@@ -42,7 +42,7 @@ public class MeleeUnit : BaseUnit
 		{
 			if (unitCollison.team != team)
 			{
-				_targetUnit = unitCollison;
+				_targetUnit = unitCollison; 
 			}
 		}
 	}
