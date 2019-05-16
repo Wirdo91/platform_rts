@@ -13,6 +13,10 @@ public abstract class BaseUnit : MonoBehaviour
 	[SerializeField] protected Team _team;
 	public Team team => _team;
 
+	public int health = 2;
+
+	public BaseWeapon weapoon = default;
+
     void Update()
     {
         if (IsCloseToEnemy())
@@ -31,5 +35,5 @@ public abstract class BaseUnit : MonoBehaviour
 
 	protected abstract void Attack();
 
-	public abstract void Kill();
+	public abstract void Damage(int amount);
 }

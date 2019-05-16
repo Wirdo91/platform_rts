@@ -11,16 +11,20 @@ public class MeleeUnit : BaseUnit
 
 	protected override void Attack()
 	{
-		if (team == Team.Team1)
-		{
-			_targetUnit?.Kill();
-		}
-		Debug.Log($"{name} ATTACK");
+		weapoon?.Attack();
 	}
 
-	public override void Kill()
+	public override void Damage(int amount)
 	{
-		Destroy(gameObject);
+		health -= amount;
+
+		if (health <= 0)
+		{
+			this.enabled = false;
+			GetComponent<BoxCollider>().enabled = false;
+			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+			GetComponent<Rigidbody>().AddForceAtPosition(Vector3.back * 50, transform.position + Vector3.up);
+		}
 	}
 
 	protected override bool IsCloseToEnemy()
@@ -32,7 +36,7 @@ public class MeleeUnit : BaseUnit
 	{
 		if (Mathf.Abs(_targetLocation.x - transform.position.x) > 0.5f)
 		{
-			GetComponent<Rigidbody>().MovePosition(transform.position + new Vector3(((_targetLocation.x - transform.position.x) * _moveSpeed * Time.deltaTime), 0));
+			GetComponent<Rigidbody>().MovePosition(transform.position + new Vector3((Mathf.Sign(_targetLocation.x - transform.position.x) * _moveSpeed * Time.deltaTime), 0));
 		}
 	}
 
@@ -44,6 +48,19 @@ public class MeleeUnit : BaseUnit
 			{
 				_targetUnit = unitCollison; 
 			}
+		}
+		else
+		{
+			_targetUnit = null;
+		}
+	}
+
+	private void OnTriggerEnter(Collider collider)
+	{
+		if (collider.tag == "Weapon" && collider.gameObject.GetComponentInParent<BaseWeapon>() is BaseWeapon weaponHit)
+		{
+			Debug.Log("test");
+			Damage(weaponHit.damage);
 		}
 	}
 
