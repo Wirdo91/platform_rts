@@ -7,6 +7,10 @@ public class RangedUnit : BaseUnit
 	[SerializeField] private Vector2 _targetLocation = default;
 	[SerializeField] private float _moveSpeed = 5f;
 
+	public override float range {
+		get => 20;
+		protected set => throw new System.NotImplementedException(); }
+
 	public override void Damage(int amount)
 	{
 		health -= amount;
@@ -15,8 +19,8 @@ public class RangedUnit : BaseUnit
 		{
 			this.enabled = false;
 			GetComponent<BoxCollider>().enabled = false;
-			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-			GetComponent<Rigidbody>().AddForceAtPosition(Vector3.back * 50, transform.position + Vector3.up);
+			_rigidbody.constraints = RigidbodyConstraints.None;
+			_rigidbody.AddForceAtPosition(Vector3.back * 50, transform.position + Vector3.up);
 		}
 	}
 
@@ -29,7 +33,7 @@ public class RangedUnit : BaseUnit
 	{
 		if (Mathf.Abs(_targetLocation.x - transform.position.x) > 0.5f)
 		{
-			GetComponent<Rigidbody>().MovePosition(transform.position + new Vector3((Mathf.Sign(_targetLocation.x - transform.position.x) * _moveSpeed * Time.deltaTime), 0));
+			_rigidbody.MovePosition(transform.position + new Vector3((Mathf.Sign(_targetLocation.x - transform.position.x) * _moveSpeed * Time.deltaTime), 0));
 		}
 	}
 

@@ -9,6 +9,10 @@ public class MeleeUnit : BaseUnit
 
 	[SerializeField] private float _attacksPerSecond = 1;
 
+	public override float range {
+		get => 1;
+		protected set => throw new System.NotImplementedException(); }
+
 	protected override void Attack()
 	{
 		weapon?.Attack();

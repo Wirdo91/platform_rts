@@ -232,8 +232,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _team: 1
   health: 2
-  weapoon: {fileID: 8135852732154326238}
-  _targetLocation: {x: -49.15, y: -4.2}
+  weapon: {fileID: 0}
+  _targetLocation: {x: 0, y: 0}
   _moveSpeed: 5
   _attacksPerSecond: 1
 --- !u!1 &8135852732562486913

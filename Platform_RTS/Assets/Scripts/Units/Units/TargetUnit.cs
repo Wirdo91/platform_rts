@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TargetUnit : BaseUnit
 {
+	public override float range { get => 0; protected set => throw new System.NotImplementedException(); }
+
 	public override void Damage(int amount)
 	{
 	}
