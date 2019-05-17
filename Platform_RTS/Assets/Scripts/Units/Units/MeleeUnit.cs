@@ -7,11 +7,11 @@ public class MeleeUnit : BaseUnit
 	[SerializeField] private Vector2 _targetLocation = default;
 	[SerializeField] private float _moveSpeed = 5f;
 
-	private BaseUnit _targetUnit = default;
+	[SerializeField] private float _attacksPerSecond = 1;
 
 	protected override void Attack()
 	{
-		weapoon?.Attack();
+		weapon?.Attack();
 	}
 
 	public override void Damage(int amount)
@@ -27,40 +27,11 @@ public class MeleeUnit : BaseUnit
 		}
 	}
 
-	protected override bool IsCloseToEnemy()
-	{
-		return _targetUnit != null;
-	}
-
 	protected override void Move()
 	{
 		if (Mathf.Abs(_targetLocation.x - transform.position.x) > 0.5f)
 		{
 			GetComponent<Rigidbody>().MovePosition(transform.position + new Vector3((Mathf.Sign(_targetLocation.x - transform.position.x) * _moveSpeed * Time.deltaTime), 0));
-		}
-	}
-
-	private void OnTriggerStay(Collider collider)
-	{
-		if (collider.gameObject.GetComponent<BaseUnit>() is BaseUnit unitCollison)
-		{
-			if (unitCollison.team != team)
-			{
-				_targetUnit = unitCollison; 
-			}
-		}
-		else
-		{
-			_targetUnit = null;
-		}
-	}
-
-	private void OnTriggerEnter(Collider collider)
-	{
-		if (collider.tag == "Weapon" && collider.gameObject.GetComponentInParent<BaseWeapon>() is BaseWeapon weaponHit)
-		{
-			Debug.Log("test");
-			Damage(weaponHit.damage);
 		}
 	}
 

@@ -16,7 +16,7 @@ public class Sword : BaseWeapon
 		_model.gameObject.SetActive(false);
 	}
 
-	public override void Attack()
+	public override void Attack(BaseUnit unit = null)
 	{
 		if (!attacking)
 		{

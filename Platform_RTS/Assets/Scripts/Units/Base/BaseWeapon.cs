@@ -7,5 +7,5 @@ public abstract class BaseWeapon : MonoBehaviour
 	[SerializeField] protected int _damage;
 	public int damage => _damage;
 
-	public abstract void Attack();
+	public abstract void Attack(BaseUnit unit = null);
 }
