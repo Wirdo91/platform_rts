@@ -12,6 +12,8 @@ public abstract class BaseUnit : MonoBehaviour
 	}
 
 	[SerializeField] protected Team _team;
+	[SerializeField] protected float _attacksPerSecond = 1;
+	
 	public Team team => _team;
 
 	public Vector3 position => transform.position;
@@ -57,6 +59,11 @@ public abstract class BaseUnit : MonoBehaviour
 		{
 			Debug.Log("projectileHit");
 			Damage(projectile.damage);
+
+			if (projectile.stickToModel)
+			{
+				projectile.Disable(transform);
+			}
 		}
 	}
 

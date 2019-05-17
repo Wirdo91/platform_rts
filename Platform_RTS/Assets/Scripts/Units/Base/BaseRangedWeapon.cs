@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class BaseRangedWeapon : BaseWeapon
 {
-	[SerializeField] private Projectile _projectilePrefab = default;
+	[SerializeField] protected Projectile _projectilePrefab = default;
 }

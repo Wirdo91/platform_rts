@@ -7,8 +7,6 @@ public class MeleeUnit : BaseUnit
 	[SerializeField] private Vector2 _targetLocation = default;
 	[SerializeField] private float _moveSpeed = 5f;
 
-	[SerializeField] private float _attacksPerSecond = 1;
-
 	public override float range {
 		get => 1;
 		protected set => throw new System.NotImplementedException(); }

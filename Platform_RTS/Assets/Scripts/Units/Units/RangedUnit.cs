@@ -24,9 +24,19 @@ public class RangedUnit : BaseUnit
 		}
 	}
 
+	private float _attackTimer = 0;
+
 	protected override void Attack()
 	{
-		weapon?.Attack(_targetsInRange[0]);
+		if (_attackTimer <= 0)
+		{
+			weapon?.Attack(_targetsInRange[0]);
+			_attackTimer = _attacksPerSecond / 1;
+		}
+		else
+		{
+			_attackTimer -= Time.deltaTime;
+		}
 	}
 
 	protected override void Move()
