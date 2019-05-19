@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class BaseRangedWeapon : BaseWeapon
 {
 	[SerializeField] protected Projectile _projectilePrefab = default;
+	[SerializeField] protected AnimationCurve _projectilePathCurve = default;
 }
