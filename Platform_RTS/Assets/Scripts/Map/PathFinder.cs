@@ -36,7 +36,7 @@ public static class PathFinder
 			}
 			else
 			{
-				foreach (Connection connection in pathNode.node._connectedNodes)
+				foreach (Connection connection in pathNode.node.connectedNodes)
 				{
 					if (_closedNodes.Contains(new PathNode() { node = connection.node}))
 					{

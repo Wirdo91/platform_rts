@@ -48,7 +48,6 @@ public abstract class BaseUnit : MonoBehaviour
 	{
 		if (collider.tag == "Weapon" && collider.gameObject.GetComponentInParent<BaseWeapon>() is BaseWeapon weaponHit)
 		{
-			Debug.Log("test");
 			Damage(weaponHit.damage);
 		}
 	}
@@ -57,7 +56,6 @@ public abstract class BaseUnit : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Projectile" && collision.gameObject.GetComponentInParent<Projectile>() is Projectile projectile)
 		{
-			Debug.Log("projectileHit");
 			Damage(projectile.damage);
 
 			if (projectile.stickToModel)
